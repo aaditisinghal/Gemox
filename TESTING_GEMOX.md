@@ -34,7 +34,7 @@ cd Gemox
 
 To unlock Gemox's full capabilities, you'll need to configure API keys in the extension settings:
 
-<img src="Images/Gemox%20Settings.png" alt="Gemox Settings" width="500"/>
+<img src="Images/GemoxSettings.png" alt="Gemox Settings" width="500"/>
 
 ### OpenAI API Key
 - **Purpose**: Enables RAG (semantic search) for large contexts (25k+ characters)
