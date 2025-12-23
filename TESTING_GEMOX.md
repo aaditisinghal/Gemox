@@ -10,12 +10,12 @@ Gemox is an **unpublished Chrome extension**, so testing requires a local instal
 
 **Option A: Clone the Repository**
 ```bash
-git clone https://github.com/Harpita-P/Gemox.git
+git clone https://github.com/aaditisinghal/Gemox/tree/master.git
 cd Gemox
 ```
 
 **Option B: Download ZIP**
-1. Go to [github.com/Harpita-P/Gemox](https://github.com/Harpita-P/Gemox)
+1. Go to [github.com//Gemox](https://github.com/aaditisinghal/Gemox/tree/master)
 2. Click the green **Code** button
 3. Select **Download ZIP**
 4. Extract the ZIP file to a folder
