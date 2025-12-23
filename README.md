@@ -1,5 +1,5 @@
 
-<img src="Images/Gemox-main.png" alt="Gemox" width="1920"/>
+<img src="Images/gemox-main.png" alt="Gemox" width="1920"/>
 
 > **[View Project on Devpost - Submitted to Google Chrome Built-in AI Challenge 2025](https://devpost.com/software/noma-yjpsrf)**
 
