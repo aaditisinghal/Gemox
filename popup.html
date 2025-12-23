@@ -1,0 +1,1188 @@
+<!doctype html>
+
+<html>
+  
+  <head>
+    
+    <meta charset="utf-8" />
+    
+    <title>gemox
+      </title>
+    
+    <link href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,600&display=swap" rel="stylesheet">
+    
+    <style>
+      * {
+        font-family: 'Ranade', sans-serif;
+      }
+      
+      body { 
+        font-family: 'Ranade', sans-serif;
+        margin: 0; 
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #f8fafc;
+        overflow: hidden;
+        color: #1f2937;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .scrollable-content::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      .scrollable-content::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 0;
+      }
+      
+      .scrollable-content::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+        transition: background 0.2s ease;
+      }
+      
+      .scrollable-content::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+
+      .scrollable-content {
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 #f1f5f9;
+      }
+      
+      .header {
+        background: transparent;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+      
+      .header-content {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+      }
+      
+      h1 { 
+        font-size: 18px; 
+        font-weight: 600;
+        margin: 0 0 0 -15px;
+        color: #1f2937;
+      }
+      
+      .scrollable-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0 32px;
+      }
+      
+      .main-content {
+        padding: 20px;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      .form-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 8px;
+      }
+      
+      .form-row {
+        display: flex;
+        gap: 16px;
+        align-items: flex-end;
+        max-width: 600px;
+      }
+      
+      .form-row.two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        max-width: 500px;
+      }
+      
+      input[type=text], input[type=password], select, input[type=file] {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 13px;
+        background: #ffffff;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      
+      input[type=text]:focus, input[type=password]:focus, select:focus {
+        outline: none;
+        border-color: #000000;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        transform: translateY(-1px);
+      }
+      
+      input[type=file] {
+        padding: 6px 8px;
+        font-size: 13px;
+        width: 100% !important;
+        box-sizing: border-box;
+      }
+      
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 500;
+        background: #ffffff;
+        color: #374151;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        white-space: nowrap;
+        min-width: 100px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      
+      .btn:hover:not(:disabled) {
+        background: #f9fafb;
+        border-color: #9ca3af;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      
+      .btn-primary {
+        background: #000000;
+        border-color: #000000;
+        color: #ffffff;
+        font-weight: 500;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      
+      .btn-primary:hover:not(:disabled) {
+        background: #1f2937;
+        border-color: #1f2937;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+      
+      .btn-small {
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 6px;
+        min-width: 80px;
+      }
+      
+      .status-text {
+        margin-top: 6px;
+        font-size: 12px;
+        color: #6b7280;
+      }
+      
+      .tags-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+      
+      .tag-item {
+        background: #ffffff;
+        border: 1px solid #60a5fa30;
+        border-radius: 12px;
+        padding: 16px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      
+      .tag-item::before {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #60a5fa;
+        opacity: 0.8;
+      }
+      
+      .tag-item:hover {
+        border-color: #60a5fa50;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(96, 165, 250, 0.15);
+      }
+      
+      .tag-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      
+      .tag-name {
+        font-size: 15px;
+        font-weight: 600;
+        color: #60a5fa;
+        margin-left: 12px;
+      }
+      
+      .tag-count {
+        font-size: 11px;
+        color: #60a5fa;
+        background: #60a5fa15;
+        padding: 3px 8px;
+        border-radius: 12px;
+        border: 1px solid #60a5fa30;
+        font-weight: 500;
+      }
+      
+      .context-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 8px;
+        margin-bottom: 6px;
+        font-size: 12px;
+        line-height: 1.3;
+        flex: 1;
+        overflow: hidden;
+      }
+      
+      .context-title {
+        font-size: 11px;
+        color: #64748b;
+        margin-bottom: 4px;
+        font-weight: 500;
+      }
+      
+      .folder-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        margin-bottom: 8px;
+      }
+      
+      .folder-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .folder-name {
+        font-weight: 500;
+        color: #1f2937;
+      }
+      
+      .folder-tag {
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 500;
+      }
+      
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      
+      .section-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+      }
+      
+      .divider {
+        height: 1px;
+        background: #e5e7eb;
+        margin: 40px 0;
+      }
+
+      .tag-item:nth-child(6n+1) { border-color: #60a5fa30; } 
+      .tag-item:nth-child(6n+1)::before { background: #60a5fa; }
+      .tag-item:nth-child(6n+1) .tag-name { color: #60a5fa; }
+      .tag-item:nth-child(6n+1) .tag-count { background: #60a5fa15; border-color: #60a5fa30; color: #60a5fa; }
+      
+      .tag-item:nth-child(6n+2) { border-color: #ef444430; } 
+      .tag-item:nth-child(6n+2)::before { background: #ef4444; }
+      .tag-item:nth-child(6n+2) .tag-name { color: #ef4444; }
+      .tag-item:nth-child(6n+2) .tag-count { background: #ef444415; border-color: #ef444430; color: #ef4444; }
+      
+      .tag-item:nth-child(6n+3) { border-color: #fbbf2430; } 
+      .tag-item:nth-child(6n+3)::before { background: #fbbf24; }
+      .tag-item:nth-child(6n+3) .tag-name { color: #fbbf24; }
+      .tag-item:nth-child(6n+3) .tag-count { background: #fbbf2415; border-color: #fbbf2430; color: #fbbf24; }
+      
+      .tag-item:nth-child(6n+4) { border-color: #a855f730; } 
+      .tag-item:nth-child(6n+4)::before { background: #a855f7; }
+      .tag-item:nth-child(6n+4) .tag-name { color: #a855f7; }
+      .tag-item:nth-child(6n+4) .tag-count { background: #a855f715; border-color: #a855f730; color: #a855f7; }
+      
+      .tag-item:nth-child(6n+5) { border-color: #f472b630; } 
+      .tag-item:nth-child(6n+5)::before { background: #f472b6; }
+      .tag-item:nth-child(6n+5) .tag-name { color: #f472b6; }
+      .tag-item:nth-child(6n+5) .tag-count { background: #f472b615; border-color: #f472b630; color: #f472b6; }
+      
+      .tag-item:nth-child(6n+6) { border-color: #fb923c30; } 
+      .tag-item:nth-child(6n+6)::before { background: #fb923c; }
+      .tag-item:nth-child(6n+6) .tag-name { color: #fb923c; }
+      .tag-item:nth-child(6n+6) .tag-count { background: #fb923c15; border-color: #fb923c30; color: #fb923c; }
+
+      .setup-section {
+        margin-bottom: 16px;
+        padding: 12px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+      }
+      
+      .integration-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .integration-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+      
+      .integration-item:hover {
+        border-color: #d1d5db;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+      }
+      
+      .integration-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+      }
+      
+      .integration-icon {
+        font-size: 18px;
+      }
+      
+      .integration-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      
+      .integration-name {
+        font-weight: 500;
+        color: #1f2937;
+        font-size: 14px;
+      }
+      
+      .integration-desc {
+        font-size: 12px;
+        color: #6b7280;
+      }
+      
+      .integration-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .integration-status {
+        font-size: 11px;
+        padding: 3px 6px;
+        border-radius: 3px;
+        background: #f3f4f6;
+        color: #6b7280;
+        font-weight: 500;
+        min-width: 70px;
+        text-align: center;
+      }
+      
+      .integration-status.connected {
+        background: #dcfce7;
+        color: #16a34a;
+      }
+      
+      .btn-compact {
+        padding: 4px 8px;
+        font-size: 11px;
+        min-width: 60px;
+        border-radius: 6px;
+      }
+      
+      .btn-mini {
+        padding: 3px 6px;
+        font-size: 10px;
+        min-width: 50px;
+        border-radius: 4px;
+      }
+      
+      .two-column-layout {
+        display: grid;
+        grid-template-columns: 0.6fr 1.4fr;
+        gap: 32px;
+        align-items: start;
+      }
+      
+      .column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      @media (max-width: 1000px) {
+        .two-column-layout {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+
+      .integration-item {
+        padding: 10px 12px;
+        min-height: auto;
+      }
+      
+      .integration-icon {
+        font-size: 16px;
+      }
+      
+      .integration-name {
+        font-size: 13px;
+      }
+      
+      .integration-desc {
+        font-size: 11px;
+      }
+      
+      .integration-status {
+        font-size: 10px;
+        padding: 2px 5px;
+        min-width: 60px;
+      }
+
+      .integration-tiles {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        padding: 20px;
+        margin-top: 16px;
+      }
+      
+      .integration-item-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .integration-tile {
+        background: #ffffff;
+        border: 1px solid #000000;
+        border-radius: 12px;
+        padding: 12px;
+        text-align: center;
+        transition: all 0.2s ease;
+        position: relative;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+      }
+      
+      .integration-tile:hover {
+        transform: scale(1.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+      
+      .integration-tile.connected {
+        border-color: #10b981;
+        background: #f0fdf4;
+      }
+      
+      .integration-tile img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+      
+      .integration-details {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 120px;
+      }
+      
+      .integration-tile-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1f2937;
+        margin: 0;
+      }
+      
+      .integration-tile-desc {
+        font-size: 11px;
+        color: #6b7280;
+        line-height: 1.3;
+        margin: 0;
+      }
+      
+      .integration-tile-status {
+        font-size: 9px;
+        padding: 2px 6px;
+        border-radius: 8px;
+        font-weight: 500;
+        background: #f3f4f6;
+        color: #6b7280;
+        display: inline-block;
+        width: fit-content;
+      }
+      
+      .integration-tile-status.connected {
+        background: #dcfce7;
+        color: #16a34a;
+      }
+      
+      .integration-tile-button {
+        padding: 3px 8px;
+        font-size: 10px;
+        min-width: 50px;
+        border-radius: 6px;
+        margin-top: 4px;
+      }
+
+      </style>
+  
+    </head>
+  
+  <body>
+    
+    <div class="header">
+      
+      <div class="header-content">
+        
+        <h1>Gemox Settings
+          </h1>
+      
+        </div>
+    
+      </div>
+
+    <div class="scrollable-content">
+      
+      <div class="main-content">
+        
+        <div class="two-column-layout">
+
+          <div class="column">
+            
+            <div class="form-group">
+              
+              <label class="form-label">OpenAI API Key
+                </label>
+              
+              <div class="form-row">
+                
+                <input id="openai-key" type="password" placeholder="Enter OpenAI API key (sk-...)" style="flex: 1;" />
+                
+                <button id="save-openai-key" class="btn">Save Key
+                  </button>
+              
+                </div>
+              
+              <div id="openai-key-status" class="status-text">Required for semantic search (25k+ chars)
+                </div>
+            
+              </div>
+
+            <div class="form-group">
+              
+              <label class="form-label">Gemini API Key
+                </label>
+              
+              <div class="form-row">
+                
+                <input id="gemini-key" type="password" placeholder="Enter Gemini API key (AIza...)" style="flex: 1;" />
+                
+                <button id="save-gemini-key" class="btn">Save Key
+                  </button>
+              
+                </div>
+              
+              <div id="gemini-key-status" class="status-text">Required for image generation & audio transcription
+                </div>
+            
+              </div>
+
+            <div class="form-group">
+              
+              <label class="form-label">Create Tag
+                </label>
+              
+              <div class="form-row">
+                
+                <input id="tag-name" type="text" placeholder="Enter tag name (e.g., myResearch)" style="flex: 1;" />
+                
+                <button id="create" class="btn btn-primary">Create
+                  </button>
+              
+                </div>
+              
+              <div class="status-text">Will display as @myResearch
+                </div>
+            
+              </div>
+
+            <div class="form-group">
+              
+              <div class="section-header">
+                
+                <h3 class="section-title">Connect Document
+                  </h3>
+              
+                </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                
+                <input id="pdf-file" type="file" accept=".pdf" />
+                
+                <select id="pdf-tag-select">
+                  
+                  <option value="">Select tag...
+                    </option>
+                
+                  </select>
+                
+                <button id="upload-pdf" class="btn btn-primary" disabled style="padding: 6px 12px; min-width: 80px; align-self: flex-start;">Upload
+                  </button>
+              
+                </div>
+              
+              <div id="upload-status" class="status-text">
+                </div>
+            
+              </div>
+
+            <div class="form-group">
+              
+              <div class="section-header">
+                
+                <h3 class="section-title">🎙️ Transcribe Audio
+                  </h3>
+              
+                </div>
+              
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                
+                <input id="audio-file" type="file" accept="audio/*,.m4a,.mp3,.wav,.webm,.mp4,.mpeg,.mpga" />
+                
+                <select id="audio-tag-select">
+                  
+                  <option value="">Select tag...
+                    </option>
+                
+                  </select>
+                
+                <button id="upload-audio" class="btn btn-primary" disabled style="padding: 6px 12px; min-width: 80px; align-self: flex-start;">Transcribe & Save
+                  </button>
+              
+                </div>
+              
+              <div id="audio-upload-status" class="status-text">
+                </div>
+            
+              </div>
+          
+            </div>
+
+          <div class="column">
+            
+            <div class="form-group">
+              
+              <div class="section-header">
+                
+                <h3 class="section-title">🔗 Integrations
+                  </h3>
+              
+                </div>
+
+              <div id="google-setup" class="setup-section">
+          
+                <div class="form-row">
+            
+                  <input id="calendar-client-id" type="text" placeholder="Google Client ID" style="flex: 1;" />
+            
+                  <button id="calendar-save-settings" class="btn">Save
+                    </button>
+          
+                  </div>
+          
+                <div id="calendar-auth-status" class="status-text">
+                  </div>
+        
+                </div>
+
+              <div class="integration-tiles">
+
+                <div class="integration-item-wrapper">
+            
+                  <div class="integration-tile" id="calendar-tile">
+              
+                    <img src="Images/gc-logo.png" alt="Google Calendar" />
+            
+                    </div>
+            
+                  <div class="integration-details">
+              
+                    <div class="integration-tile-name">Calendar
+                      </div>
+              
+                    <div class="integration-tile-desc">@myCalendar - Next 30 days
+                      </div>
+              
+                    <div class="integration-tile-status" id="calendar-status">Not connected
+                      </div>
+              
+                    <button id="calendar-connect" class="btn btn-primary integration-tile-button">Connect
+                      </button>
+              
+                    <button id="calendar-disconnect" class="btn integration-tile-button" style="display: none;">Disconnect
+                      </button>
+            
+                    </div>
+          
+                  </div>
+
+                <div class="integration-item-wrapper">
+            
+                  <div class="integration-tile" id="gmail-tile">
+              
+                    <img src="Images/email-logo.png" alt="Gmail" />
+            
+                    </div>
+            
+                  <div class="integration-details">
+              
+                    <div class="integration-tile-name">Gmail
+                      </div>
+              
+                    <div class="integration-tile-desc">@myEmails - Recent emails (50)
+                      </div>
+              
+                    <div class="integration-tile-status" id="gmail-status">Not connected
+                      </div>
+              
+                    <button id="gmail-connect" class="btn btn-primary integration-tile-button">Connect
+                      </button>
+              
+                    <button id="gmail-disconnect" class="btn integration-tile-button" style="display: none;">Disconnect
+                      </button>
+            
+                    </div>
+          
+                  </div>
+
+                <div class="integration-item-wrapper">
+            
+                  <div class="integration-tile" id="notion-tile">
+              
+                    <img src="Images/not-logo.png" alt="Notion" />
+            
+                    </div>
+            
+                  <div class="integration-details">
+              
+                    <div class="integration-tile-name">Notion
+                      </div>
+              
+                    <div class="integration-tile-desc">@myNotion - Sync page content
+                      </div>
+              
+                    <div class="integration-tile-status" id="notion-status">Not connected
+                      </div>
+              
+                    <button id="notion-setup" class="btn btn-primary integration-tile-button">Setup
+                      </button>
+              
+                    <button id="notion-disconnect" class="btn integration-tile-button" style="display: none;">Disconnect
+                      </button>
+            
+                    </div>
+          
+                  </div>
+
+                <div class="integration-item-wrapper">
+            
+                  <div class="integration-tile" id="pinterest-tile">
+              
+                    <img src="Images/pin-logo.png" alt="Pinterest" />
+            
+                    </div>
+            
+                  <div class="integration-details">
+              
+                    <div class="integration-tile-name">Pinterest
+                      </div>
+              
+                    <div class="integration-tile-desc">@myBoard - Sync board pins
+                      </div>
+              
+                    <div class="integration-tile-status" id="pinterest-status">Not connected
+                      </div>
+              
+                    <button id="pinterest-setup" class="btn btn-primary integration-tile-button">Setup
+                      </button>
+              
+                    <button id="pinterest-disconnect" class="btn integration-tile-button" style="display: none;">Disconnect
+                      </button>
+            
+                    </div>
+          
+                  </div>
+
+                <div class="integration-item-wrapper">
+            
+                  <div class="integration-tile" id="github-tile">
+              
+                    <img src="Images/git-logo.png" alt="GitHub" />
+            
+                    </div>
+            
+                  <div class="integration-details">
+              
+                    <div class="integration-tile-name">GitHub
+                      </div>
+              
+                    <div class="integration-tile-desc">@myGitHub - Profile & repositories
+                      </div>
+              
+                    <div class="integration-tile-status" id="github-status">Not connected
+                      </div>
+              
+                    <button id="github-setup" class="btn btn-primary integration-tile-button">Setup
+                      </button>
+              
+                    <button id="github-disconnect" class="btn integration-tile-button" style="display: none;">Disconnect
+                      </button>
+            
+                    </div>
+          
+                  </div>
+        
+                </div>
+
+              <div id="notion-setup-modal" style="display: none; margin-top: 16px; padding: 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+          
+                <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Notion Setup
+                  </h4>
+          
+                <div class="form-group" style="margin-bottom: 12px;">
+            
+                  <label class="form-label" style="font-size: 13px;">Integration Token
+                    </label>
+            
+                  <input id="notion-token" type="password" placeholder="secret_..." style="width: 100%; margin-bottom: 8px;" />
+            
+                  <div style="font-size: 11px; color: #6b7280;">Create an integration at notion.so/my-integrations
+                    </div>
+          
+                  </div>
+          
+                <div class="form-group" style="margin-bottom: 12px;">
+            
+                  <label class="form-label" style="font-size: 13px;">Page URL or ID
+                    </label>
+            
+                  <input id="notion-page-id" type="text" placeholder="https://notion.so/..." style="width: 100%; margin-bottom: 8px;" />
+            
+                  <div style="font-size: 11px; color: #6b7280;">Share the page with your integration first
+                    </div>
+          
+                  </div>
+          
+                <div class="form-group" style="margin-bottom: 12px;">
+            
+                  <label class="form-label" style="font-size: 13px;">Tag Name
+                    </label>
+            
+                  <input id="notion-tag-name" type="text" placeholder="myNotion" style="width: 100%;" />
+          
+                  </div>
+          
+                <div style="display: flex; gap: 8px;">
+            
+                  <button id="notion-save" class="btn btn-primary" style="flex: 1;">Save & Connect
+                    </button>
+            
+                  <button id="notion-cancel" class="btn" style="flex: 1;">Cancel
+                    </button>
+          
+                  </div>
+          
+                <div id="notion-setup-status" class="status-text" style="margin-top: 8px;">
+                  </div>
+        
+                </div>
+
+              <div id="notion-tags-section" style="display: none; margin-top: 16px;">
+          
+                <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Notion Tags
+                  </h4>
+          
+                <div id="notion-tags-list">
+                  </div>
+        
+                </div>
+
+              <div id="pinterest-setup-modal" style="display: none; margin-top: 16px; padding: 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+          
+                <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Pinterest Setup
+                  </h4>
+          
+                <div class="form-group" style="margin-bottom: 12px;">
+            
+                  <label class="form-label" style="font-size: 13px;">Board URL
+                    </label>
+            
+                  <input id="pinterest-board-url" type="text" placeholder="https://pinterest.com/username/board or pin.it/..." style="width: 100%; margin-bottom: 8px;" />
+            
+                  <div style="font-size: 11px; color: #6b7280;">Paste a public Pinterest board URL or pin.it short link
+                    </div>
+          
+                  </div>
+          
+                <div class="form-group" style="margin-bottom: 12px;">
+            
+                  <label class="form-label" style="font-size: 13px;">Tag Name
+                    </label>
+            
+                  <input id="pinterest-tag-name" type="text" placeholder="myDreamKitchen" style="width: 100%;" />
+          
+                  </div>
+          
+                <div style="display: flex; gap: 8px;">
+            
+                  <button id="pinterest-save" class="btn btn-primary" style="flex: 1;">Connect Pins
+                    </button>
+            
+                  <button id="pinterest-cancel" class="btn" style="flex: 1;">Cancel
+                    </button>
+          
+                  </div>
+          
+                <div id="pinterest-setup-status" class="status-text" style="margin-top: 8px;">
+                  </div>
+        
+                </div>
+
+              <div id="pinterest-tags-section" style="display: none; margin-top: 16px;">
+          
+                <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">Pinterest Tags
+                  </h4>
+          
+                <div id="pinterest-tags-list">
+                  </div>
+
+              <div id="github-setup-modal" style="display: none; margin-top: 16px; padding: 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+          
+                <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">GitHub Setup
+                  </h4>
+          
+                <div class="form-group" style="margin-bottom: 12px;">
+            
+                  <label class="form-label" style="font-size: 13px;">GitHub URL or Username
+                    </label>
+            
+                  <input id="github-url" type="text" placeholder="https://github.com/username or username" style="width: 100%; margin-bottom: 8px;" />
+            
+                  <div style="font-size: 11px; color: #6b7280;">Enter a GitHub profile URL or just the username
+                    </div>
+          
+                  </div>
+          
+                <div class="form-group" style="margin-bottom: 12px;">
+            
+                  <label class="form-label" style="font-size: 13px;">Tag Name
+                    </label>
+            
+                  <input id="github-tag-name" type="text" placeholder="myGitHub" style="width: 100%;" />
+          
+                  </div>
+          
+                <div style="display: flex; gap: 8px;">
+            
+                  <button id="github-save" class="btn btn-primary" style="flex: 1;">Connect Profile
+                    </button>
+            
+                  <button id="github-cancel" class="btn" style="flex: 1;">Cancel
+                    </button>
+          
+                  </div>
+          
+                <div id="github-setup-status" class="status-text" style="margin-top: 8px;">
+                  </div>
+        
+                </div>
+
+              <div id="github-tags-section" style="display: none; margin-top: 16px;">
+          
+                <h4 style="margin: 0 0 12px 0; font-size: 14px; font-weight: 600;">GitHub Tags
+                  </h4>
+          
+                <div id="github-tags-list">
+                  </div>
+
+                <div style="display: none;">
+                
+                  <input id="calendar-api-key" />
+                
+                  <button id="calendar-signin">
+                    </button>
+                
+                  <button id="calendar-signout">
+                    </button>
+                
+                  <button id="gmail-signin">
+                    </button>
+                
+                  <button id="gmail-signout">
+                    </button>
+                
+                  <div id="calendar-tag-creation">
+                    </div>
+                
+                  <div id="gmail-tag-creation">
+                    </div>
+                
+                  <div id="calendar-tags-section">
+                    </div>
+                
+                  <div id="gmail-tags-section">
+                    </div>
+                
+                  <div id="calendar-tags-list">
+                    </div>
+                
+                  <div id="gmail-tags-list">
+                    </div>
+                
+                  <div id="gmail-auth-status">
+                    </div>
+                
+                  <button id="calendar-sync-all">
+                    </button>
+                
+                  <button id="gmail-sync-all">
+                    </button>
+                
+                  <input id="calendar-tag-name" />
+                
+                  <select id="calendar-tag-type">
+                  
+                    <option value="upcoming">Next 30 Days
+                      </option>
+                
+                    </select>
+                
+                  <button id="create-calendar-tag">
+                    </button>
+                
+                  <input id="gmail-tag-name" />
+                
+                  <select id="gmail-tag-type">
+                    </select>
+                
+                  <button id="create-gmail-tag">
+                    </button>
+              
+                  </div>
+            
+                </div>
+          
+              </div>
+        
+            </div>
+
+          <div class="divider">
+            </div>
+
+          <div class="form-group">
+        
+            <div class="section-header">
+          
+              <h3 class="section-title">Tags & Contexts
+                </h3>
+          
+              <button id="refresh" class="btn btn-small">Refresh
+                </button>
+        
+              </div>
+        
+            <div id="list" class="tags-grid">
+              </div>
+      
+            </div>
+      
+          </div>
+    
+        </div>
+
+      <script type="module" src="popup.js">
+        </script>
+  
+      </body>
+
+    </html>

@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "Gemox",
+  "version": "1.0.0",
+  "description": "Browser AI that lives in your cursor. With @tags, Gemox sees all your connected context to make you productive.",
+  "permissions": ["activeTab", "scripting", "contextMenus", "storage", "identity"],
+  "trial_tokens": [
+    "A9I0QGi0wmV/GYaFZACqp3yfDIET8zm4TQ8zvwMFgn0AsqVEc0yDqubR24k6kZ5vsrZgXYSAAszWFyy/9C8SdAcAAACPeyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vam9lb2VvaWhoYWRrZm1nb2dtY2JraWlpZWlhYmNnYmoiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDAsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="
+  ],
+  "oauth2": {
+    "client_id": "1042565644864-jhbkt96q5sg54hftbog0stnrj3a92tto.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calendar.readonly",
+      "https://www.googleapis.com/auth/gmail.readonly",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Gemox",
+    "default_icon": {
+      "16": "Images/gemox-logo.png",
+      "48": "Images/gemox-logo.png",
+      "128": "Images/gemox-logo.png"
+    }
+  },
+  "icons": {
+    "16": "Images/gemox-logo.png",
+    "48": "Images/gemox-logo.png",
+    "128": "Images/gemox-logo.png"
+  },
+  "commands": {
+    "open-tag-selector": {
+      "suggested_key": {
+        "default": "Ctrl+Q",
+        "mac": "Ctrl+Q"
+      },
+      "description": "Open tag selector"
+    },
+    "send-to-gemini": {
+      "suggested_key": {
+        "default": "Ctrl+Space",
+        "mac": "Ctrl+Space"
+      },
+      "description": "Send prompt with context to Gemini Nano"
+    }
+  },
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js", "rag-system.js", "audio-context-menu.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["pdf.worker.min.js","pdf.min.js","pdf-loader.js","pdf-extractor.js","calendar-service-v3.js","calendar-sync.js","Images/gc-logo.png","gmail-service.js","gmail-sync.js","Images/email-logo.png","folder-watcher.js","rag-system.js","notion-service.js","notion-sync.js","Images/not-logo.png","pinterest-service.js","pinterest-sync.js","Images/pin-logo.png","audio-service.js","Images/audio-logo.png","Images/gemox-logo.png","Images/git-logo.png","browser-use-service.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
