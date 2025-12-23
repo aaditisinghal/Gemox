@@ -15,7 +15,7 @@ cd Gemox
 ```
 
 **Option B: Download ZIP**
-1. Go to [github.com/aaditisinghal/Gemox](https://github.com/aaditisinghal/Gemox)
+1. Go to [github.com/aaditisinghal/Gemox](https://github.com/aaditisinghal/Gemox/tree/master)
 2. Click the green **Code** button
 3. Select **Download ZIP**
 4. Extract the ZIP file to a folder
@@ -34,7 +34,7 @@ cd Gemox
 
 To unlock Gemox's full capabilities, you'll need to configure API keys in the extension settings:
 
-<img src="Images/Gemox%20Settings.png" alt="Gemox Settings" width="500"/>
+<img src="Images/GemoxSettings.png" alt="Gemox Settings" width="500"/>
 
 ### OpenAI API Key
 - **Purpose**: Enables RAG (semantic search) for large contexts (25k+ characters)
